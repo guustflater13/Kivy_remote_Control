@@ -1,0 +1,75 @@
+#:kivy 1.9.1
+
+<Control>:
+    BoxLayout: # Settings menu 75/15
+        padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: "Settings"
+            #size_hint_y: 0.15
+        Button:
+            text: "About"
+            #size_hint_y: 0.15
+
+    BoxLayout: # Control Up 75/30
+        padding: 10,10,10,10
+        size_hint: 1,0.30
+        orientation: "vertical"
+        Button:
+            text: "UP"
+            size_hint_x: 0.25
+            size_hint_y: 0.15
+            pos_hint: {'center_x': 0.5}
+        Button:
+            text: "DOWN"
+            size_hint_x: 0.25
+            size_hint_y: 0.15
+            pos_hint: {'center_x': 0.5}
+
+    BoxLayout: # Control Left / Base / Right 75/15
+        padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: "LEFT"
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 0}
+        Button:
+            text: "BASE"
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 0.5}
+        Button:
+            text: "RIGHT"
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 1}
+
+    BoxLayout: # Control Forward 75/30
+        padding: 10,10,10,10
+        size_hint: 1,0.30
+        orientation: "vertical"
+        Button:
+            text: "FORWARD"
+            size_hint_x: 0.25
+            size_hint_y: 0.15
+            pos_hint: {'center_x': 0.5}
+        Button:
+            text: "BACKWARD"
+            size_hint_x: 0.25
+            size_hint_y: 0.15
+            pos_hint: {'center_x': 0.5}
+
+    BoxLayout: # Values 75/15
+        padding: 10,10,10,10
+        size_hint: 1,0.15
+        Label:
+            text: "Rotate"
+        Label:
+            text: "Arm1"
+        Label:
+            text: "Arm2"
+        Label:
+            text: "Gripper"
