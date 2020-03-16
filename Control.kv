@@ -9,7 +9,7 @@
             text: "Settings"
             #size_hint_y: 0.15
         Button:
-            text: "About"
+            text: root.your_time
             #size_hint_y: 0.15
 
     BoxLayout: # Control Up 75/30
@@ -62,9 +62,17 @@
             size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
 
-    BoxLayout: # Values 75/15
-        padding: 10,10,10,10
-        size_hint: 1,0.15
+    #BoxLayout:
+        #orientation: "vertical"
+        #size_hint: 1,0.15
+        #ControledItems:
+        #ControledValues:
+
+
+#<ControledItems@BoxLayout>:
+    #orientation: "horizontal"
+    BoxLayout: # Values 1/15
+        size_hint: 1,0.075
         Label:
             text: "Rotate"
         Label:
@@ -73,3 +81,20 @@
             text: "Arm2"
         Label:
             text: "Gripper"
+
+#<ControledValues@BoxLayout>:
+    #rotate_value: ""
+    #arm_under_value: ""
+    #arm_above_value: ""
+    #gripper_value: ""
+    #orientation: "horizontal"
+    BoxLayout: # Values 1/15
+        size_hint: 1,0.075
+        Label:
+            text: root.rotate_value
+        Label:
+            text: root.arm_under_value
+        Label:
+            text: root.arm_above_value
+        Label:
+            text: root.gripper_value
