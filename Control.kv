@@ -21,11 +21,13 @@
             size_hint_x: 0.25
             size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            on_press: root.up()
         Button:
             text: "DOWN"
             size_hint_x: 0.25
             size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            on_press: root.down()
 
     BoxLayout: # Control Left / Base / Right 75/15
         padding: 10,10,10,10
@@ -75,12 +77,60 @@
         size_hint: 1,0.075
         Label:
             text: "Rotate"
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
         Label:
-            text: "Arm1"
+            text: "Arm Under"
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
         Label:
-            text: "Arm2"
+            text: "Arm Above"
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
         Label:
             text: "Gripper"
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: "Vertical"
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 1, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: "Horizontal"
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 1, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: "rotation"
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 1, .7
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
 #<ControledValues@BoxLayout>:
     #rotate_value: ""
@@ -91,10 +141,16 @@
     BoxLayout: # Values 1/15
         size_hint: 1,0.075
         Label:
-            text: root.rotate_value
+            text: root.str_rotate
         Label:
-            text: root.arm_under_value
+            text: root.str_arm_under
         Label:
-            text: root.arm_above_value
+            text: root.str_arm_above
         Label:
-            text: root.gripper_value
+            text: root.str_gripper
+        Label:
+            text: root.str_posy
+        Label:
+            text: root.str_posx
+        Label:
+            text: root.str_posr
