@@ -26,6 +26,7 @@ class Control(BoxLayout):
     str_posy = StringProperty()
     str_posx = StringProperty()
     str_posr = StringProperty()
+
     # arm_under = 0
     # arm_above = 0
     # gripper = 0
@@ -39,11 +40,12 @@ class Control(BoxLayout):
         self.posr = rotate = 0  # rotate
         arm_under = 0
         arm_above = 0
-        gripper = 0
+        self.step = 1
+        self.gripper = 0  # 0 = closed, 1 = open
         self.str_rotate = str(rotate)
         self.str_arm_under = str(arm_under)
         self.str_arm_above = str(arm_above)
-        self.str_gripper = str(gripper)
+        self.str_gripper = str(self.gripper)
         self.str_posy = str(self.posy)
         self.str_posx = str(self.posx)
         self.str_posr = str(self.posr)
@@ -64,6 +66,17 @@ class Control(BoxLayout):
     def down(self):
         self.posy = self.posy - 1
         self.str_posy = str(self.posy)
+
+    def gripper_change(self):
+        if self.gripper:
+            self.gripper = 0
+            self.str_gripper = str(self.gripper)
+        else:
+            self.gripper = 1
+            self.str_gripper = str(self.gripper)
+
+    def steps(self):
+        self.step = 10
 
 
 class ControlApp(App):

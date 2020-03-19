@@ -2,35 +2,84 @@
 
 <Control>:
     BoxLayout: # Settings menu 75/15
-        padding: 10,10,10,10
+        #padding: 10,10,10,10
         size_hint: 1,0.15
         orientation: "horizontal"
         Button:
             text: "Settings"
             #size_hint_y: 0.15
+            background_color: 1,0,0,1
         Button:
             text: root.your_time
             #size_hint_y: 0.15
+            background_color: 1,0,0,1
 
-    BoxLayout: # Control Up 75/30
-        padding: 10,10,10,10
-        size_hint: 1,0.30
-        orientation: "vertical"
+    BoxLayout: # Control Up and gripper 75/30
+        #padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: "GRIPPER"
+            on_press: root.gripper_change()
+            #size: 0.35,0.15
+            size_hint_x: 0.33
+            #pos_hint: {'center_x': 0}
+            background_color: 1,1,0,1
         Button:
             text: "UP"
-            size_hint_x: 0.25
-            size_hint_y: 0.15
-            pos_hint: {'center_x': 0.5}
             on_press: root.up()
+            #size: 0.35,0.15
+            size_hint_x: 0.33
+            #pos_hint: {'center_x': 0.5}
+            background_color: 1,.5,0,1
+        Button:
+            id: "steps1"
+            text: "1"
+            size_hint_x: 0.0825
+            #pos_hint: {'center_x': 1}
+            background_color: 1,1,.5,1
+            on_press: root.steps()
+        Button:
+            id: "steps2"
+            text: "2"
+            size_hint_x: 0.0825
+            #pos_hint: {'center_x': 1}
+            background_color: 1,1,.5,1
+        Button:
+            id: "steps5"
+            text: "5"
+            size_hint_x: 0.0825
+            #pos_hint: {'center_x': 1}
+            background_color: 1,1,.5,1
+        Button:
+            id: "steps10"
+            text: "10"
+            size_hint_x: 0.0825
+            #pos_hint: {'center_x': 1}
+            background_color: 1,1,.5,1
+
+    BoxLayout: # Control Down 75/30
+        #padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: ""
+            #size: 0.35,0.15
+            pos_hint: {'center_x': 0}
         Button:
             text: "DOWN"
-            size_hint_x: 0.25
-            size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
             on_press: root.down()
+            background_color: 1,.5,0,1
+        Button:
+            text: ""
+            #size: 0.35,0.15
+            pos_hint: {'center_x': 1}
 
     BoxLayout: # Control Left / Base / Right 75/15
-        padding: 10,10,10,10
+        #padding: 10,10,10,10
         size_hint: 1,0.15
         orientation: "horizontal"
         Button:
@@ -38,31 +87,61 @@
             #size_hint_x: 0.25
             #size_hint_y: 0.15
             pos_hint: {'center_x': 0}
+            background_color: 1,.5,0,1
         Button:
             text: "BASE"
             #size_hint_x: 0.25
             #size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            background_color: 1,0,.5,1
         Button:
             text: "RIGHT"
             #size_hint_x: 0.25
             #size_hint_y: 0.15
             pos_hint: {'center_x': 1}
+            background_color: 1,.5,0,1
 
     BoxLayout: # Control Forward 75/30
-        padding: 10,10,10,10
-        size_hint: 1,0.30
-        orientation: "vertical"
+        #padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: ""
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 0}
         Button:
             text: "FORWARD"
-            size_hint_x: 0.25
-            size_hint_y: 0.15
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            background_color: 1,.5,0,1
+        Button:
+            text: ""
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 1}
+
+    BoxLayout: # Control backward 75/30
+        #padding: 10,10,10,10
+        size_hint: 1,0.15
+        orientation: "horizontal"
+        Button:
+            text: ""
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 0}
         Button:
             text: "BACKWARD"
-            size_hint_x: 0.25
-            size_hint_y: 0.15
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
+            background_color: 1,.5,0,1
+        Button:
+            text: ""
+            #size_hint_x: 0.25
+            #size_hint_y: 0.15
+            pos_hint: {'center_x': 1}
 
     #BoxLayout:
         #orientation: "vertical"
@@ -84,7 +163,7 @@
                     pos: self.pos
                     size: self.size
         Label:
-            text: "Arm Under"
+            text: "Arm\nUnder"
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .7
@@ -92,7 +171,7 @@
                     pos: self.pos
                     size: self.size
         Label:
-            text: "Arm Above"
+            text: "Arm\nAbove"
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .7
