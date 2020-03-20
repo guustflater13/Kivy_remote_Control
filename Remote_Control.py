@@ -5,7 +5,7 @@ from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 from kivy.clock import Clock
 import time
-
+from kivy.uix.button import Button
 
 # Builder.load_file('Control.kv')
 
@@ -40,7 +40,8 @@ class Control(BoxLayout):
         self.posr = rotate = 0  # rotate
         arm_under = 0
         arm_above = 0
-        self.step = 1
+        self.step = 1  # default step
+        self.ids.btn_step1.background_color = [1, 0, 1, 1]  # pressed
         self.gripper = 0  # 0 = closed, 1 = open
         self.str_rotate = str(rotate)
         self.str_arm_under = str(arm_under)
@@ -51,12 +52,14 @@ class Control(BoxLayout):
         self.str_posr = str(self.posr)
 
         Clock.schedule_interval(self.set_time, 0.1)
+        # get all known ids for debugging
+        # print(self.ids)
 
     def set_time(self, dt):
         self.your_time = time.strftime("%m/%d/%Y %H:%M")
 
     def up(self):
-        self.posy = self.posy + 1
+        self.posy = self.posy + self.step
         self.str_posy = str(self.posy)
         # calculate new values arm_under and arm_above
         arm_under, arm_above = calc_vert(self.posy)
@@ -64,19 +67,50 @@ class Control(BoxLayout):
         self.str_arm_above = str(arm_above)
 
     def down(self):
-        self.posy = self.posy - 1
+        self.posy = self.posy - self.step
         self.str_posy = str(self.posy)
+
+    def left(self):
+        self.posr = self.posr - self.step
+        self.str_posr = str(self.posr)
+
+    def right(self):
+        self.posr = self.posr + self.step
+        self.str_posr = str(self.posr)
+
+    def forwards(self):
+        self.posx = self.posx + self.step
+        self.str_posx = str(self.posx)
+
+    def backwards(self):
+        self.posx = self.posx - self.step
+        self.str_posx = str(self.posx)
 
     def gripper_change(self):
         if self.gripper:
             self.gripper = 0
-            self.str_gripper = str(self.gripper)
+            self.str_gripper = "Closed"
         else:
             self.gripper = 1
-            self.str_gripper = str(self.gripper)
+            self.str_gripper = "Open"
 
-    def steps(self):
-        self.step = 10
+    def steps(self, inp_step):
+        current_step = self.step
+        self.step = inp_step
+        all_steps = [1, 2, 5, 10]
+        # reset current step
+        self.ids.btn_step1.background_color = [1, 1, .5, 1]
+        self.ids.btn_step2.background_color = [1, 1, .5, 1]
+        self.ids.btn_step5.background_color = [1, 1, .5, 1]
+        self.ids.btn_step10.background_color = [1, 1, .5, 1]
+        if self.step == 1:
+            self.ids.btn_step1.background_color = [1, 0, 1, 1]
+        elif self.step == 2:
+            self.ids.btn_step2.background_color = [1, 0, 1, 1]
+        elif self.step == 5:
+            self.ids.btn_step5.background_color = [1, 0, 1, 1]
+        elif self.step == 10:
+            self.ids.btn_step10.background_color = [1, 0, 1, 1]
 
 
 class ControlApp(App):

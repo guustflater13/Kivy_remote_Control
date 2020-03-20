@@ -33,30 +33,33 @@
             #pos_hint: {'center_x': 0.5}
             background_color: 1,.5,0,1
         Button:
-            id: "steps1"
+            id: btn_step1
             text: "1"
             size_hint_x: 0.0825
             #pos_hint: {'center_x': 1}
             background_color: 1,1,.5,1
-            on_press: root.steps()
+            on_press: root.steps(1)
         Button:
-            id: "steps2"
+            id: btn_step2
             text: "2"
             size_hint_x: 0.0825
             #pos_hint: {'center_x': 1}
             background_color: 1,1,.5,1
+            on_press: root.steps(2)
         Button:
-            id: "steps5"
+            id: btn_step5
             text: "5"
             size_hint_x: 0.0825
             #pos_hint: {'center_x': 1}
             background_color: 1,1,.5,1
+            on_press: root.steps(5)
         Button:
-            id: "steps10"
+            id: btn_step10
             text: "10"
             size_hint_x: 0.0825
             #pos_hint: {'center_x': 1}
             background_color: 1,1,.5,1
+            on_press: root.steps(10)
 
     BoxLayout: # Control Down 75/30
         #padding: 10,10,10,10
@@ -83,11 +86,12 @@
         size_hint: 1,0.15
         orientation: "horizontal"
         Button:
-            text: "LEFT"
+            text: "Rotate\nLEFT"
             #size_hint_x: 0.25
             #size_hint_y: 0.15
             pos_hint: {'center_x': 0}
             background_color: 1,.5,0,1
+            on_press: root.left()
         Button:
             text: "BASE"
             #size_hint_x: 0.25
@@ -95,11 +99,12 @@
             pos_hint: {'center_x': 0.5}
             background_color: 1,0,.5,1
         Button:
-            text: "RIGHT"
+            text: "Rotate\nRIGHT"
             #size_hint_x: 0.25
             #size_hint_y: 0.15
             pos_hint: {'center_x': 1}
             background_color: 1,.5,0,1
+            on_press: root.right()
 
     BoxLayout: # Control Forward 75/30
         #padding: 10,10,10,10
@@ -116,6 +121,7 @@
             #size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
             background_color: 1,.5,0,1
+            on_press: root.forwards()
         Button:
             text: ""
             #size_hint_x: 0.25
@@ -137,6 +143,7 @@
             #size_hint_y: 0.15
             pos_hint: {'center_x': 0.5}
             background_color: 1,.5,0,1
+            on_press: root.backwards()
         Button:
             text: ""
             #size_hint_x: 0.25
