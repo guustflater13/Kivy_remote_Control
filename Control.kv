@@ -6,9 +6,11 @@
         size_hint: 1,0.15
         orientation: "horizontal"
         Button:
-            text: "Settings"
+            id: btn_con
+            text: "Connect"
             #size_hint_y: 0.15
             background_color: 1,0,0,1
+            on_press: root.connect_to_robot()
         Button:
             text: root.your_time
             #size_hint_y: 0.15

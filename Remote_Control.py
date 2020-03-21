@@ -5,7 +5,10 @@ from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 from kivy.clock import Clock
 import time
+from RC_Client import *
+from threading import Thread
 from kivy.uix.button import Button
+
 
 # Builder.load_file('Control.kv')
 
@@ -42,18 +45,27 @@ class Control(BoxLayout):
         arm_above = 0
         self.step = 1  # default step
         self.ids.btn_step1.background_color = [1, 0, 1, 1]  # pressed
-        self.gripper = 0  # 0 = closed, 1 = open
+        self.gripper = 0  # 0 = cloes, 1 = open
         self.str_rotate = str(rotate)
         self.str_arm_under = str(arm_under)
         self.str_arm_above = str(arm_above)
-        self.str_gripper = str(self.gripper)
+        # self.str_gripper = self.gripper
+        self.str_gripper = "Closed"
         self.str_posy = str(self.posy)
         self.str_posx = str(self.posx)
         self.str_posr = str(self.posr)
 
+        self.sock = MySocket()
+        self.host = "localhost"
+        self.port = 6666
+
         Clock.schedule_interval(self.set_time, 0.1)
         # get all known ids for debugging
         # print(self.ids)
+
+    def connect_to_robot(self):
+        print("connecting to: ", self.host, "with port ", self.port)
+        self.sock.open_connection(self.host, self.port)
 
     def set_time(self, dt):
         self.your_time = time.strftime("%m/%d/%Y %H:%M")
