@@ -54,18 +54,28 @@ class Control(BoxLayout):
         self.str_posy = str(self.posy)
         self.str_posx = str(self.posx)
         self.str_posr = str(self.posr)
+        self.connect = 0
 
-        self.sock = MySocket()
         self.host = "localhost"
         self.port = 6666
+        self.sock = MySocket(self.host, self.port)
 
         Clock.schedule_interval(self.set_time, 0.1)
         # get all known ids for debugging
-        # print(self.ids)
+        print(self.ids)
 
     def connect_to_robot(self):
-        print("connecting to: ", self.host, "with port ", self.port)
-        self.sock.open_connection(self.host, self.port)
+        if self.connect == 0:
+            if self.sock.open_connection():
+                print("connected to: ", self.host, "with port ", self.port)
+                self.ids.btn_con.text = "Disconnect"
+                self.connect = 1
+        else:
+            print("disconnected from: ", self.host, "with port ", self.port)
+            self.sock.close_connection()
+            self.ids.btn_con.text = "Connect"
+            self.connect = 0
+            self.sock = MySocket()
 
     def set_time(self, dt):
         self.your_time = time.strftime("%m/%d/%Y %H:%M")
@@ -77,6 +87,10 @@ class Control(BoxLayout):
         arm_under, arm_above = calc_vert(self.posy)
         self.str_arm_under = str(arm_under)
         self.str_arm_above = str(arm_above)
+        message_list = [self.str_rotate, self.str_arm_under, self.str_arm_above, self.str_gripper]
+        delimiter = ";"
+        message = delimiter.join(message_list)
+        self.sock.send_data(message)
 
     def down(self):
         self.posy = self.posy - self.step
